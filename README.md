@@ -1,3 +1,3 @@
 # SmartAdvising API
 
-Python Falcon PynamoDB running on AWS Lambda
+Python Falcon SQLAlchemy/SQLService/pymysql running on AWS Lambda

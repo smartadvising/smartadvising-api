@@ -13,26 +13,33 @@ Using compiled bytecode, rather than source files, will lead to faster execution
 import boto3
 import json
 import os
+import time
 import sys
 import configparser
 
 
-boto3.setup_default_session(profile_name="default")
-client = boto3.client("lambda")
+AWS_PROFILE_NAME = "smartadvising"
+AWS_REGION_NAME = "us-east-1"
+FUNCTION_NAME = "smartadvising-api"
 
+PYTHON_PROJECT_DIR = "sa"
+PYTHON_PROJECT_PKG_DIR = "libs"
 
-FUNCTION_NAME = "sa-staging"
 CONFIG_PARSER = configparser.ConfigParser()
 CONFIG_PARSER.read("./config.ini")
 DEFAULTS = {"environment": json.load(open("env_vars.json"))}
 PYTHON_VERSION = "cpython-37"
 
 
+boto3.setup_default_session(profile_name=AWS_PROFILE_NAME)
+client = boto3.client("lambda", region_name=AWS_REGION_NAME)
+
 if sys.argv[1] == "build":
+    ts = int(time.time())
     zip_name = f"{FUNCTION_NAME}.zip"
     project_dir = os.path.dirname(os.path.realpath(__file__))
-    dir_code = "/tmp/sa-code"
-    dir_libs = "/tmp/sa-libs"
+    dir_code = f"/tmp/project-{ts}-code"
+    dir_libs = f"/tmp/project-{ts}-libs"
 
     # Ensure inside project directory
     os.chdir(project_dir)
@@ -49,8 +56,8 @@ if sys.argv[1] == "build":
     # Make fresh copies of code and libs
     os.system(f"rm -rf {dir_code}")
     os.system(f"rm -rf {dir_libs}")
-    os.system(f"cp -r sa {dir_code}")
-    os.system(f"cp -r libs {dir_libs}")
+    os.system(f"cp -r {PYTHON_PROJECT_DIR} {dir_code}")
+    os.system(f"cp -r {PYTHON_PROJECT_PKG_DIR} {dir_libs}")
 
     # Remove any unnecessary files like unit tests or package's dist-info
     os.system(
@@ -75,7 +82,7 @@ if sys.argv[1] == "build":
     os.chdir(f"{dir_libs}")
 
     # Move project code with the dependencies
-    os.system(f"mv {dir_code} ./sa")
+    os.system(f"mv {dir_code} {PYTHON_PROJECT_DIR}")
 
     # Rename all optimized Python bytecode files to *.pyc
     os.system(
