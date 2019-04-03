@@ -1,20 +1,32 @@
+"""
+These models are used by SQLService to interact with a MySQL RDS database
+
+"""
+__all__ = [
+    "Model",
+    "Student",
+    "Advisor",
+    "College",
+    "Major",
+    "Faq",
+]
+
 import json
 import decimal
 import datetime
-from dateutil import relativedelta
 
-import sqlalchemy
+from sqlalchemy import Column, ForeignKey, Table, Enum, orm
+from sqlalchemy.dialects.mysql import INTEGER, VARCHAR, DATETIME, BOOLEAN, TEXT
 import sqlservice
-from sqlalchemy import Column, ForeignKey, orm
-from sqlalchemy.dialects.mysql import (
-    INTEGER,
-    DECIMAL,
-    VARCHAR,
-    DATETIME,
-    BOOLEAN,
-    LONGTEXT,
-    TEXT,
-)
+
+
+class Encoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            return str(obj)
+        elif isinstance(obj, datetime.datetime):
+            return obj.isoformat()
+        return json.JSONEncoder.default(self, obj)
 
 
 def as_dict(self, *exclude):
@@ -28,15 +40,6 @@ def as_dict(self, *exclude):
         for c in self.__table__.columns
         if str(c) not in exclude
     }
-
-
-class Encoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, decimal.Decimal):
-            return str(obj)
-        elif isinstance(obj, datetime.datetime):
-            return obj.isoformat()
-        return json.JSONEncoder.default(self, obj)
 
 
 Model = sqlservice.declarative_base()
