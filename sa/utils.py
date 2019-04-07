@@ -10,9 +10,6 @@ import requests
 import falcon
 import boto3
 
-from sa.constants import SLACK_TOKEN, SLACK_CHANNEL
-from sa.models import User
-
 
 def parse_date(date_str: str) -> datetime.datetime:
     try:
