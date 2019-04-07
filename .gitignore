@@ -106,3 +106,4 @@ venv.bak/
 env_vars.json
 config.ini
 test.py
+*.zip
