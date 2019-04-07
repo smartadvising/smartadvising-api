@@ -1,0 +1,359 @@
+/* CSS Document */
+
+
+/* Colors */
+
+.text-gold {
+  color: #CEB888;
+
+}
+
+.text-garnet{
+	color:782f40;
+}
+
+@media only screen 
+and (min-device-width : 768px){
+  a.phone{
+   pointer-events: none;
+  }
+}
+
+.home:hover{
+	color: #CEB888;
+	text-decoration:none;
+}
+
+
+.text-white {
+	color: white;
+}
+
+.bg-gold {
+  background: #CEB888;
+
+}
+.bg-garnet{
+	border-radius: 5px;
+   
+   border-left: 2px solid #CEB888;
+   border-right: 2px solid #CEB888;
+   border-top: 2px solid #CEB888;
+   border-bottom: 2px solid #CEB888;
+	
+}
+.text-black {
+  color: #2C2A29	;
+}
+
+.bg-gold {
+	background: #CEB888;
+}
+
+.underline{
+  border-bottom:2px solid #CEB888;	
+  margin-bottom:10px;
+  
+}
+
+.underline2{
+
+  border-bottom: 1px dotted #CEB888;
+  margin-bottom:10px;
+  margin-left:0px;
+  margin-right:0px;
+
+}
+.margin-top-15{
+	margin-top:30px;
+}
+
+.spacing{
+	  margin-bottom:10px;
+  
+}
+
+input:valid {
+	background-image:red;
+}
+
+/*Buttons */
+
+.edit-entry-btn{
+	color: #2C2A29;
+	border-radius: 5px;
+}
+
+.btn-rounded {
+	border-radius: 5px;
+}
+.edit-btn{
+	color: #2C2A29;
+	margin-right: 4px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	  -webkit-box-shadow: 0 6px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 6px 6px -6px #2C2A29	;
+            box-shadow: 0 6px 6px -6px #2C2A29	;
+	
+}
+.edit-btn:hover{
+	margin-right: 4px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow: 0 5px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 5px 6px -6px #2C2A29	;
+            box-shadow: 0 5px 6px -6px #2C2A29	;
+}
+.edit-btn:active{
+	color: #2C2A29;
+	margin-right: 4px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow: 0 5px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 5px 6px -6px #2C2A29	;
+            box-shadow: 0 5px 6px -6px #2C2A29	;
+}
+
+.logout-btn{
+	color: #2C2A29;
+	margin-right:8%;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow: 0 6px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 6px 6px -6px #2C2A29	;
+            box-shadow: 0 6px 6px -6px #2C2A29	;
+}
+.logout-btn:hover{
+	margin-right:8%;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-box-shadow: 0 5px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 5px 6px -6px #2C2A29	;
+            box-shadow: 0 5px 6px -6px #2C2A29	;
+}
+
+
+.submit-btn{
+	color: #2C2A29;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 6px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 6px 6px -6px #2C2A29	;
+            box-shadow: 0 6px 6px -6px #2C2A29	;
+	
+}
+.submit-btn:hover{
+	
+	border-radius: 5px;
+	color:#2C2A29	;
+	background-color: #CEB888;
+	-webkit-box-shadow: 0 5px 6px -6px #2C2A29	;
+       -moz-box-shadow: 0 5px 6px -6px #2C2A29	;
+            box-shadow: 0 5px 6px -6px #2C2A29	;
+}
+
+
+
+
+
+html {
+	min-height:100%;
+
+}
+
+
+.btn-group{
+	border-radius:0;
+	border-top:none;
+	
+}
+
+.btn{
+	border-radius:0;
+	border-top:none;
+	
+}
+
+
+.logo-box {
+height:90px;
+margin: 0 auto;
+margin-top:-65px;
+margin-bottom:-20px;
+z-index:20;
+position:relative;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+	margin-right:-200px;
+}
+
+.navbar-default .nav .text-gold{
+	color: #CEB888;
+}
+
+.main-header{
+  font-family: 'Roboto Slab', serif;
+  font-weight: 100;
+  background: white;
+  
+  border-bottom:solid 3px #CEB888;
+}
+
+small{
+}
+
+.text-gold{
+	color:#CEB888;
+}
+
+
+/* CSS Document */
+.navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+  		display:block !important;
+	}
+
+
+.navbar {
+	background:#782F40;
+	margin-top:0px;
+	border-radius:0;
+	border:none;
+	z-index:0;
+}
+
+h1{
+  color:black;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+}
+
+
+
+.modal-content{
+   
+	border-left: 2px solid #CEB888;
+   border-right: 2px solid #CEB888;
+   border-top: 4px solid #CEB888;
+   border-bottom: 2px solid #CEB888;
+	
+}
+
+
+.btn:active {
+	text-decoration: none;
+	border:none;
+	box-shadow: none;
+}
+
+.hover-white:hover{
+	color:white;
+}
+
+
+
+.shadow2 {
+   border-radius: 5px;
+   border-left: 2px solid #CEB888;
+   border-right: 2px solid #CEB888;
+   border-top: 10px solid #CEB888;
+   border-bottom: 2px solid #CEB888;
+   background: white;
+}
+
+ p, blockquote, button{
+	color: #2c2a29;
+	
+	line-height: 1.375;
+	font-weight:300;
+}
+
+h1, h2, h3, h5, a {
+	color: #2c2a29;
+	font-family: 'Roboto Slab', serif;
+	line-height: 1.375;
+	font-weight:300;
+}
+
+a.email{
+	color: #782F40;
+}
+
+h4, .btn{
+	color: #2c2a29;
+	
+	line-height: 1.375;
+	font-weight:300;
+}
+
+li, option, select, .spacing, label, button {
+	color: #2c2a29;
+	line-height: 1.375;
+	font-weight:300;
+}
+
+
+
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #782F40;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+  right: 0;
+}

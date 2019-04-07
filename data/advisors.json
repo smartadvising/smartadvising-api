@@ -1,0 +1,488 @@
+{
+    "Aerospace Studies": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "areddick@fsu.edu",
+            "info": "Air Force ROTC",
+            "name": "Ann Reddick"
+        }
+    ],
+    "Anthropology": [
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "smclemore@fsu.edu",
+            "info": "E-mail (Smclemore@FSU.edu) for appointment.",
+            "name": "Scott McLemore"
+        }
+    ],
+    "Biological Science": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "kachhamer@bio.fsu.edu",
+            "info": "",
+            "name": "Kris Achhamer"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "tbembry@fsu.edu",
+            "info": "",
+            "name": "Tyler Bembry"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "mforbes@fsu.edu",
+            "info": "",
+            "name": "Marcia Forbes"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "bgarcia@bio.fsu.edu",
+            "info": "",
+            "name": "Bonnie Garcia-Gloeckner"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "lpoland@fsu.edu",
+            "info": "",
+            "name": "Logan Poland"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "jwebber@bio.fsu.edu",
+            "info": "",
+            "name": "Jessica Webber"
+        }
+    ],
+    "Chemistry & Biochemistry": [
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "jcummings@chem.fsu.edu",
+            "info": "Chemistry - Juniors & Seniors",
+            "name": "Joshua Cummings"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "kduda@chem.fsu.edu",
+            "info": "",
+            "name": "Kelley Duda"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "lahayes@chem.fsu.edu",
+            "info": "",
+            "name": "Lori Hayes"
+        }
+    ],
+    "Classics": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "jmarinco@fsu.edu",
+            "info": "Department Advisor",
+            "name": "Dr. John Marincola"
+        },
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "coneal@fsu.edu",
+            "info": "",
+            "name": "Christopher O'Neal"
+        }
+    ],
+    "Computer Science": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "advising@pc.fsu.edu",
+            "info": "FSU Panama City; advises Panama City campus undergraduate majors only",
+            "name": "FSU Panama City Advising"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "clawson@cs.fsu.edu",
+            "info": "",
+            "name": "Daniel Clawson"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "lhigbee@fsu.edu",
+            "info": "Junior/Senior Advising. Appointments: M-Th 9:00 a.m. to 12:00 p.m., Walk-Ins M-Th 2:00 p.m. to 4:00 p.m. No advising on Fridays.",
+            "name": "Lauren Higbee"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "cyorks@fsu.edu",
+            "info": "Freshman and Sophomore walk-in advising available Monday-Thursday from 9:00 a.m. - 12:00 p.m. Appointment-only advising available Monday-Thursday from 2:00 p.m.- 4:00 p.m. No advising on Friday.",
+            "name": "Casey Yorks"
+        }
+    ],
+    "Earth, Ocean & Atmospheric Science": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "mlupiani@fsu.edu",
+            "info": "Graduate Geology &\n               \nGraduate Oceanography",
+            "name": "Michaela Lupiani"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "tmcgann@fsu.edu",
+            "info": "Environmental Science, B.S.\nEnvironmental Science & Policy, B.A. \nApplied Geosciences/ FSU-Teach\nEnvironmental Sciences/ FSU-Teach",
+            "name": "Tim McGann"
+        }
+    ],
+    "English": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "jatwater@fsu.edu",
+            "info": "",
+            "name": "Janet Atwater"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "jdesire@fsu.edu",
+            "info": "",
+            "name": "Jarmal Desire"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "isilverio@fsu.edu",
+            "info": "",
+            "name": "Inma Silverio"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "ctuffigo@fsu.edu",
+            "info": "",
+            "name": "Chantelle Tuffigo"
+        }
+    ],
+    "History": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "mkozar@fsu.edu",
+            "info": "Undergraduate and Graduate History",
+            "name": "Anne Kozar"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "cliebeskind@fsu.edu",
+            "info": "Undergraduate History",
+            "name": "Claudia Liebeskind"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "ssinke@fsu.edu",
+            "info": "",
+            "name": "Suzanne Sinke"
+        }
+    ],
+    "History & Philosophy of Science": [
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "srtucker@fsu.edu",
+            "info": "Program only offers an undergraduate minor.",
+            "name": "Shannon Tucker"
+        }
+    ],
+    "Humanities": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "kcashin@fsu.edu",
+            "info": "",
+            "name": "Kathryn Cashin"
+        },
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "srtucker@fsu.edu",
+            "info": "",
+            "name": "Shannon Tucker"
+        }
+    ],
+    "Mathematics": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "anderson@math.fsu.edu",
+            "info": "Undergraduate Mathematics: Actuarial, Applied, Pure, Biomath, FSU-Teach/Math.\nNormal Walk-in hours: Monday/Tuesday 9:00 -11:30 am and Wednesday/Thursday 1:30 \u2013 4:00 pm (During drop/add week and during breaks, students may be seen on a walk-in basis 8:30 am to 4:30 pm)   \n\n Normal Appointment hours:  Monday/Tuesday 1:30 \u2013 4:00 pm and Wednesday/Thursday 9:00 -11:30 am.    \n\n Please schedule appointments using Campus Connect via your myFSU account. ",
+            "name": "Jennifer Anderson"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "emscott2@fsu.edu",
+            "info": "Graduate Mathematics; (Applied, Pure, Actuarial, Biomedical Math, Financial Math)",
+            "name": "Elizabeth Scott"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "cyorks@fsu.edu",
+            "info": "Walk-in advising available Monday-Thursday from 9:00 a.m. - 12:00 p.m. Appointment-only advising available Monday-Thursday from 2:00 p.m. - 4:00 p.m. No advising on Friday. ",
+            "name": "Casey Yorks"
+        }
+    ],
+    "Middle Eastern Studies": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "zlababidi@fsu.edu",
+            "info": "",
+            "name": "Zafer Lababidi"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "zschlenoff@fsu.edu",
+            "info": "",
+            "name": "Zeina Schlenoff"
+        }
+    ],
+    "Military Science": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "rlovins@fsu.edu",
+            "info": "Army ROTC",
+            "name": "Robert (Bob) Lovins"
+        }
+    ],
+    "Modern Languages & Linguistics": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "mlladvising@fsu.edu",
+            "info": "",
+            "name": "Lyndssey James"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "wpigott@fsu.edu",
+            "info": "",
+            "name": "Wendy Pigott"
+        }
+    ],
+    "Molecular Biophysics": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "jsefcikova@fsu.edu",
+            "info": "",
+            "name": "Jana Sefcikova"
+        }
+    ],
+    "Philosophy": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "rkclarke@fsu.edu",
+            "info": "For Masters and Doctoral Students",
+            "name": "Dr. Randolph Clarke"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "lwillson@fsu.edu",
+            "info": "Spring 2019 Advising Hours\nMonday and Wednesday from 8am to 10am, Tuesday and Thursday from 8am to 9am, and by appointment",
+            "name": "Lauren Willson"
+        }
+    ],
+    "Physics": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "capstick@phy.fsu.edu",
+            "info": "",
+            "name": "Simon Capstick"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "jsefcikova@fsu.edu",
+            "info": "Molecular Biophysics",
+            "name": "Jana Sefcikova"
+        }
+    ],
+    "Psychology": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "advising@pc.fsu.edu",
+            "info": "FSU Panama City; advises Panama City campus undergraduate majors only",
+            "name": "FSU Panama City Advising"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "antonyan@psy.fsu.edu",
+            "info": "Tallahassee Campus Office Hours: 9am-noon & 1:30-4:30 Monday-Wednesday (Appointments Only) Thursday & Friday (Walk-Ins 9am-noon) (Appointments 1:30-4:30) (You can make an appointment using Campus Connect); During Drop/Add week and times when school is not in session, we see students on a walk-in basis only. BRING YOUR FSU CARD WHEN YOU COME IN ORDER TO SIGN IN TO SEE AN ADVISOR.",
+            "name": "Sona Antonyan"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "rchinhing@psy.fsu.edu",
+            "info": "9am-noon & 1:30-4:30 Monday-Wednesday (Appointments Only) Thursday & Friday (Walk-Ins 9am-noon) (Appointments 1:30-4:30) (You can make an appointment using Campus Connect); During Drop/Add week and times when school is not in session, we see students on a walk-in basis only. BRING YOUR FSU CARD WHEN YOU COME IN ORDER TO SIGN IN TO SEE AN ADVISOR.",
+            "name": "Ryan Chin-Hing"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "dimmer@psy.fsu.edu",
+            "info": "Tallahassee Campus Office Hours: 9am-noon & 1:30-4:30 Monday-Wednesday (Appointments Only) Thursday & Friday (Walk-Ins 9am-noon) (Appointments 1:30-4:30) (You can make an appointment here: http://psychology.its.fsu.edu/#/Home ) During Drop/Add week and times when school is not in session, we see students on a walk-in basis only. BRING YOUR FSU CARD WHEN YOU COME IN ORDER TO SIGN IN TO SEE AN ADVISOR.",
+            "name": "Lauren Dimmer"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "duda@psy.fsu.edu",
+            "info": "Tallahassee Campus Office Hours: 9am-noon & 1:30-4:30 Monday-Wednesday (Appointments Only) Thursday & Friday (Walk-Ins 9am-noon) (Appointments 1:30-4:30) (You can make an appointment using Campus Connect); During Drop/Add week and times when school is not in session, we see students on a walk-in basis only. BRING YOUR FSU CARD WHEN YOU COME IN ORDER TO SIGN IN TO SEE AN ADVISOR.",
+            "name": "Kelley Duda"
+        },
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "gibson@psy.fsu.edu",
+            "info": "",
+            "name": "Lynda Gibson"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "range@psy.fsu.edu",
+            "info": "Tallahassee Campus\nOffice Hours:\n9am-noon & 1:30-4:30\nMonday-Wednesday (Appointments Only)\nThursday & Friday (Walk-Ins 9am-noon) (Appointments 1:30-4:30)  \n (You can make an appointment here: http://psychology.its.fsu.edu/#/Home )\n\nDuring Drop/Add week and times when school is not in session, we see students on a walk-in basis only.  BRING YOUR FSU CARD WHEN YOU COME IN ORDER TO SIGN IN TO SEE AN ADVISOR.",
+            "name": "Kenneth Range"
+        }
+    ],
+    "Religion": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "dlevenson@fsu.edu",
+            "info": "",
+            "name": "David Levenson"
+        }
+    ],
+    "Scientific Computing": [
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "kgfowler@fsu.edu",
+            "info": "",
+            "name": "Karey Fowler"
+        }
+    ],
+    "Statistics": [
+        {
+            "advises_for": [
+                "Graduate"
+            ],
+            "email": "abarbu@stat.fsu.edu",
+            "info": "",
+            "name": "Adrian Barbu"
+        },
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "ramsier@stat.fsu.edu",
+            "info": "",
+            "name": "Dr. Steven Ramsier"
+        },
+        {
+            "advises_for": [
+                "Undergraduate  Graduate"
+            ],
+            "email": "nwebster@fsu.edu",
+            "info": "",
+            "name": "Natalie Webster"
+        }
+    ],
+    "Women's Studies": [
+        {
+            "advises_for": [
+                "Undergraduate"
+            ],
+            "email": "srtucker@fsu.edu",
+            "info": "",
+            "name": "Shannon Tucker"
+        }
+    ]
+}
