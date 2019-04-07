@@ -12,7 +12,8 @@
     "Anthropology": [
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "smclemore@fsu.edu",
             "info": "E-mail (Smclemore@FSU.edu) for appointment.",
@@ -72,7 +73,8 @@
     "Chemistry & Biochemistry": [
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "jcummings@chem.fsu.edu",
             "info": "Chemistry - Juniors & Seniors",
@@ -106,7 +108,8 @@
         },
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "coneal@fsu.edu",
             "info": "",
@@ -228,7 +231,8 @@
     "History & Philosophy of Science": [
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "srtucker@fsu.edu",
             "info": "Program only offers an undergraduate minor.",
@@ -246,7 +250,8 @@
         },
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "srtucker@fsu.edu",
             "info": "",
@@ -442,7 +447,8 @@
     "Scientific Computing": [
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "kgfowler@fsu.edu",
             "info": "",
@@ -468,7 +474,8 @@
         },
         {
             "advises_for": [
-                "Undergraduate  Graduate"
+                "Undergraduate",
+                "Graduate"
             ],
             "email": "nwebster@fsu.edu",
             "info": "",
