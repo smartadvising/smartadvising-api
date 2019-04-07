@@ -74,27 +74,19 @@ class CollegeResource:
         if college_id:
             colleges.append(query.filter(College.id == college_id).one())
         else:
-            if "information" in req.data:
-                query = query.filter(
-                    College.information == int(req.data["information"])
-                )
-
             colleges.extend(query.all())
 
-        resp.body = {"colleges": [college for college in colleges]}
+        resp.body = {"colleges": [college.as_dict() for college in colleges]}
 
 
 class MajorResource:
-    def on_get(self, req, resp, major_id: int = None):
+    def on_get(self, req, resp, college_id: int, major_id: int = None):
         majors = []
-        query = self.db.query(Major)
+        query = self.db.query(Major).filter(Major.college_id == college_id)
 
         if major_id:
             majors.append(query.filter(Major.id == major_id).one())
         else:
-            if "owner_id" in req.data:
-                query = query.filter(Major.owner.id == int(req.data["owner_id"]))
-
             majors.extend(query.all())
 
         resp.body = {"majors": [major.as_dict() for major in majors]}
@@ -108,9 +100,6 @@ class FaqResource:
         if faq_id:
             faqs.append(query.filter(Faq.id == faq_id).one())
         else:
-            if "owner_id" in req.data:
-                query = query.filter(Faq.owner.id == int(req.data["owner_id"]))
-
             faqs.extend(query.all())
 
         resp.body = {"faqs": [faq.as_dict() for faq in faqs]}
