@@ -1,14 +1,6 @@
-import glob
-import pathlib
-import random
-import os
-import sys
 import json
-from pprint import pprint
 
 import lxml.html
-import requests
-from lxml.cssselect import CSSSelector
 
 
 xp_advisor_list = '//*[@id="txtHint"]/div'
