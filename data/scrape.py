@@ -15,7 +15,7 @@ xp_advisor_list = '//*[@id="txtHint"]/div'
 sel_title = CSSSelector("div.dbg0pd")
 sel_details = CSSSelector("span.rllt__details.lqhpac")
 
-with open('fsu_adv_src.html') as f:
+with open("fsu_adv_src.html") as f:
     page_src = f.read()
 
 tree = lxml.html.fromstring(page_src)
@@ -41,7 +41,9 @@ for div in [el for el in tree.xpath(xp_advisor_list) if "underline2" not in el.c
         for i, col in enumerate(div.iterchildren()):
             if i == 0:
                 advisor["name"] = col.text.replace("\xa0", " ")
-                advisor["email"] = [c for c in col.getchildren()if c.tag not in ("br", )][0].text
+                advisor["email"] = [
+                    c for c in col.getchildren() if c.tag not in ("br",)
+                ][0].text
             elif i == 1:
                 advises_for = col.text_content().split("Advisor")
                 if advises_for[0].strip().lower() != "academic":
@@ -57,5 +59,5 @@ for div in [el for el in tree.xpath(xp_advisor_list) if "underline2" not in el.c
 fsu_advisors = {k: v for k, v in fsu_advisors.items() if len(v)}
 
 
-with open('advisors.json', 'w') as f:
+with open("advisors.json", "w") as f:
     json.dump(fsu_advisors, f, sort_keys=True, indent=4)
