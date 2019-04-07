@@ -2,7 +2,7 @@
 These models are used by SQLService to interact with a MySQL RDS database
 
 """
-__all__ = ["Model", "Student", "Advisor", "College", "Major", "Faq"]
+__all__ = ["Model", "Student", "Advisor", "College", "Major", "Faq", "Queuer"]
 
 import json
 import decimal
