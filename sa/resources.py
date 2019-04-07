@@ -32,19 +32,19 @@ class StudentResource:
 
             students.extend(query.all())
 
-        resp.body = {"students": [student.as_dict("password", "salt") for student in students]}
+        resp.body = {"students": [student.as_dict() for student in students]}
 
     @falcon.before(
-        required_arguments, ("first_name", "last_name", "email", "password", "zipcode")
+        required_arguments,
+        ("email", "student_identifier", "is_undergraduate", "major_id"),
     )
     def on_post(self, req, resp):
         student = Student()
 
-        student.first_name = req.data["first_name"]
-        student.last_name = req.data["last_name"]
         student.email = req.data["email"]
-        student.password = req.data["password"]
-        student.zipcode = req.data["zipcode"]
+        student.student_identifier = req.data["student_identifier"]
+        student.is_undergraduate = req.data["is_undergraduate"]
+        student.major_id = req.data["major_id"]
 
         self.db.Student.save(student)
         self.db.commit()
@@ -66,7 +66,7 @@ class AdvisorResource:
 
             advisors.extend(query.all())
 
-        resp.body = {"advisors": [advisor for advisor in advisors]}
+        resp.body = {"advisors": [advisor.as_dict() for advisor in advisors]}
 
     @falcon.before(
         required_arguments,
@@ -110,7 +110,9 @@ class AdvisorResource:
         # many advisors to many colleges
         for college_name in req.data["colleges"]:
             try:
-                college = self.db.query(College).filter(College.name == college_name).one()
+                college = (
+                    self.db.query(College).filter(College.name == college_name).one()
+                )
             except sqlalchemy.orm.exc.NoResultFound:
                 college = College()
                 college.name = college_name
@@ -135,7 +137,9 @@ class CollegeResource:
             colleges.append(query.filter(College.id == college_id).one())
         else:
             if "information" in req.data:
-                query = query.filter(College.information == int(req.data["information"]))
+                query = query.filter(
+                    College.information == int(req.data["information"])
+                )
 
             colleges.extend(query.all())
 
@@ -144,22 +148,18 @@ class CollegeResource:
 
 class MajorResource:
     def on_get(self, req, resp, major_id: int = None):
-        majores = []
+        majors = []
         query = self.db.query(Major)
 
         if major_id:
-            majores.append(query.filter(Major.id == major_id).one())
+            majors.append(query.filter(Major.id == major_id).one())
         else:
             if "owner_id" in req.data:
                 query = query.filter(Major.owner.id == int(req.data["owner_id"]))
 
-            majores.extend(query.all())
+            majors.extend(query.all())
 
-        resp.body = {
-            "majores": [
-                major.as_dict("password", "salt") for major in majores
-            ]
-        }
+        resp.body = {"majors": [major.as_dict() for major in majors]}
 
 
 class FaqResource:
@@ -175,6 +175,83 @@ class FaqResource:
 
             faqs.extend(query.all())
 
+        resp.body = {"faqs": [faq.as_dict() for faq in faqs]}
+
+
+class QueueResource:
+    def on_get(self, req, resp):
+        query = self.db.query(Queuer)
+
+        if "major_id" in req.data:
+            query = query.filter(Queuer.major_id == int(req.data["major_id"]))
+
+        if "is_undergraduate" in req.data:
+            query = query.filter(
+                Queuer.is_undergraduate == strtobool(req.data["is_undergraduate"])
+            )
+
         resp.body = {
-            "faqs": [faq.as_dict("password", "salt") for faq in faqs]
+            "queue": [
+                l.as_dict()
+                for l in sorted(query.all(), key=lambda lg: int(lg.position))
+            ]
         }
+
+
+class QueuerResource:
+    @falcon.before(required_arguments, ("student_id"))
+    def on_post(self, req, resp):
+        """ Enqueue a Student for a specific major/undergrad queue. """
+        student = (
+            self.db.query(Student).filter(Student.id == req.data["student_id"]).one()
+        )
+
+        if "name" in req.data:
+            student.name = req.data["name"]
+            self.db.Student.save(student)
+
+        tail_queuer = (
+            self.db.query(Queue)
+            .filter(Queue.major_id == student.major_id)
+            .filter(Queue.is_undergraduate == student.is_undergraduate)
+            .order_by(Queue.position.desc())
+            .first()
+        )
+
+        queuer = Queuer(
+            student_id=student.id,
+            major_id=student.major_id,
+            is_undergraduate=student.is_undergraduate,
+            position=1 if not tail_queuer else tail_queuer.position + 1,
+        )
+
+        self.db.Queuer.save(queuer)
+        self.db.commit()
+
+        resp.body = {"queuer": queuer.as_dict()}
+        resp.status = falcon.HTTP_201
+
+    @falcon.before(required_arguments, ("student_id"))
+    def on_delete(self, req, resp, queuer_id: int = None):
+        """ Dequeue a Student for a specific major/undergrad queue. """
+        queuer = (
+            self.db.query(Queuer)
+            .filter(Queuer.student_id == req.data["student_id"])
+            .one()
+        )
+
+        remaining_queuers = (
+            self.db.query(Queue)
+            .filter(Queuer.major_id == student.major_id)
+            .filter(Queuer.is_undergraduate == student.is_undergraduate)
+            .filter(Queuer.position > queuer.position)
+            .all()
+        )
+
+        for lg in remaining_queuers:
+            lg.position -= 1
+            self.db.Queuer.save(lg)
+
+        self.db.commit()
+
+        resp.status = falcon.HTTP_202
