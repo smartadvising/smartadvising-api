@@ -67,26 +67,26 @@ api = falcon.API(
 api.add_error_handler(Exception, generic_error_handler)
 
 from sa.resources import (
-    UserResource,
-    AnimalResource,
-    TraitResource,
-    BusinessResource,
-    ServiceResource,
-    ReviewResource,
-    TransactionResource,
+    StudentResource,
+    AdvisorResource,
+    CollegeResource,
+    MajorResource,
+    QueueResource,
+    QueuerResource,
+    FaqResource,
 )
 
 
-class_to_route_names_table = {"business": "businesses"}
+class_to_route_names_table = {}
 
 for cls in (
-    UserResource,
-    AnimalResource,
-    TraitResource,
-    BusinessResource,
-    ServiceResource,
-    ReviewResource,
-    TransactionResource,
+    StudentResource,
+    AdvisorResource,
+    CollegeResource,
+    MajorResource,
+    QueueResource,
+    QueuerResource,
+    FaqResource,
 ):
     name = cls.__name__.rsplit("Resource", 1)[0].lower()
 

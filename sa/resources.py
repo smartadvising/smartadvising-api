@@ -1,11 +1,11 @@
 __all__ = [
-    "UserResource",
-    "AnimalResource",
-    "TraitResource",
+    "StudentResource",
+    "AdvisorResource",
+    "CollegeResource",
     "MajorResource",
+    "QueueResource",
+    "QueuerResource",
     "FaqResource",
-    "ReviewResource",
-    "TransactionResource",
 ]
 
 from distutils.util import strtobool
@@ -15,13 +15,7 @@ import sqlalchemy
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
-from sa.models import (
-    Student,
-    Advisor,
-    College,
-    Major,
-    Faq,
-)
+from sa.models import Student, Advisor, College, Major, Faq
 from sa.utils import parse_date, required_arguments
 
 

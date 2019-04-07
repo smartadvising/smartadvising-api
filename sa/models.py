@@ -2,14 +2,7 @@
 These models are used by SQLService to interact with a MySQL RDS database
 
 """
-__all__ = [
-    "Model",
-    "Student",
-    "Advisor",
-    "College",
-    "Major",
-    "Faq",
-]
+__all__ = ["Model", "Student", "Advisor", "College", "Major", "Faq"]
 
 import json
 import decimal
@@ -46,25 +39,14 @@ Model = sqlservice.declarative_base()
 Model.as_dict = as_dict
 
 
-advisor_college = sqlalchemy.Table(
-    "AdvisorCollege",
-    Model.metadata,
-    Column("advisor_id", INTEGER, ForeignKey("Advisor.id")),
-    Column("college_id", INTEGER, ForeignKey("College.id")),
-)
-
-
 class Student(Model):
     __tablename__ = "Student"
 
     id = Column(INTEGER, primary_key=True)
-    first_name = Column(VARCHAR(255))
-    last_name = Column(VARCHAR(255))
-    fsu_id = Column(VARCHAR(20))
+    name = Column(VARCHAR(255))
+    student_identifier = Column(VARCHAR(20), nullable=False)
     email = Column(VARCHAR(95), unique=True, nullable=False)
-
     is_undergraduate = Column(BOOLEAN, nullable=False, default=True)
-
     # many students to one major
     major_id = Column(INTEGER, ForeignKey("Major.id"))
     major = orm.relation("Major", uselist=False, back_populates="Student")
@@ -80,41 +62,50 @@ class Major(Model):
     college_id = Column(INTEGER, ForeignKey("College.id"))
     college = orm.relation("College", uselist=False)
 
-    # one major to many students
-    students = orm.relation("Major", back_populates="major")
+    # one to many students
+    students = orm.relation("Student", back_populates="major")
+    advisor = orm.relation("Advisor", back_populates="major")
 
 
 class College(Model):
     __tablename__ = "College"
 
     id = Column(INTEGER, primary_key=True)
-    name = Column(VARCHAR(255))
+    name = Column(VARCHAR(255), nullable=False)
+    email_tld = Column(VARCHAR(255), nullable=False, unique=True)
 
     # one college to many majors
     majors = orm.relation("Major", back_populates="college")
 
 
 class Advisor(Model):
-    __tablename__ = "Utility"
+    __tablename__ = "Advisor"
 
     id = Column(INTEGER, primary_key=True)
-    first_name = Column(VARCHAR(255))
-    last_name = Column(VARCHAR(255))
+    name = Column(VARCHAR(255), nullable=False)
+    email = Column(VARCHAR(255), nullable=False)
+    is_undergraduate = Column(BOOLEAN, nullable=False)
 
-    title = Column(VARCHAR(255))
-    phone_number = Column(VARCHAR(64))
-    email = Column(VARCHAR(255))
-    office_number = Column(VARCHAR(255))
-    hours = Column(VARCHAR(255))
-    description = Column(TEXT)
-
-    colleges = orm.relation("College", secondary=advisor_college)
+    major_id = Column(INTEGER, ForeignKey("Major.id"))
+    major = orm.relation("Major", uselist=False, back_populates="advisor")
 
 
 class Faq(Model):
-    __tablename__ = "Fact"
+    __tablename__ = "Faq"
 
     id = Column(INTEGER, primary_key=True)
 
     question = Column(TEXT, nullable=False)
     answer = Column(TEXT, nullable=False)
+
+
+class Queuer(Model):
+    __tablename__ = "Queuer"
+
+    id = Column(INTEGER, primary_key=True)
+    major_id = Column(INTEGER, ForeignKey("Major.id"))
+    major = orm.relation("Major", uselist=False)
+    is_undergraduate = Column(BOOLEAN, nullable=False, default=True)
+
+    student_id = Column(INTEGER, ForeignKey("Student.id"))
+    position = Column(INTEGER, nullable=False, default=1)
