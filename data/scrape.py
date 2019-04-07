@@ -12,8 +12,6 @@ from lxml.cssselect import CSSSelector
 
 
 xp_advisor_list = '//*[@id="txtHint"]/div'
-sel_title = CSSSelector("div.dbg0pd")
-sel_details = CSSSelector("span.rllt__details.lqhpac")
 
 with open("fsu_adv_src.html") as f:
     page_src = f.read()
