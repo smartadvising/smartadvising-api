@@ -61,71 +61,9 @@ class AdvisorResource:
         if advisor_id:
             advisors.append(query.filter(Advisor.id == advisor_id).one())
         else:
-            if "owner_id" in req.data:
-                query = query.filter(Advisor.owner.id == int(req.data["owner_id"]))
-
             advisors.extend(query.all())
 
         resp.body = {"advisors": [advisor.as_dict() for advisor in advisors]}
-
-    @falcon.before(
-        required_arguments,
-        (
-            "name",
-            "owner_id",
-            "college",
-            "weight_lbs",
-            "sex",
-            "type",
-            "date_birth",
-            "bathroom_location",
-            "activity_level",
-        ),
-    )
-    def on_post(self, req, resp):
-        advisor = Advisor(None)
-
-        advisor.name = req.data["name"]
-        advisor.owner_id = req.data["owner_id"]
-        advisor.weight_lbs = int(req.data["weight_lbs"])
-        advisor.sex = strtobool(req.data["sex"])
-        advisor.type = req.data.get("type", advisor.type)
-        advisor.date_birth = parse_date(req.data["date_birth"])
-        advisor.bathroom_location = req.data.get(
-            "bathroom_location", advisor.bathroom_location
-        )
-        advisor.activity_level = req.data.get("activity_level", advisor.activity_level)
-
-        # many advisors to many traits
-        for trait_value in req.data["traits"]:
-            try:
-                trait = self.db.query(Trait).filter(Trait.value == trait_value).one()
-            except sqlalchemy.orm.exc.NoResultFound:
-                trait = Trait(value=trait_value)
-                self.db.Trait.save(trait)
-
-            self.db.Trait.save(trait)
-            advisor.traits.append(trait)
-
-        # many advisors to many colleges
-        for college_name in req.data["colleges"]:
-            try:
-                college = (
-                    self.db.query(College).filter(College.name == college_name).one()
-                )
-            except sqlalchemy.orm.exc.NoResultFound:
-                college = College()
-                college.name = college_name
-                self.db.College.save(college)
-
-            self.db.College.save(college)
-            advisor.colleges.append(college)
-
-        self.db.Advisor.save(advisor)
-        self.db.commit()
-
-        resp.status = falcon.HTTP_201
-        resp.body = {"advisor_id": advisor.id}
 
 
 class CollegeResource:
