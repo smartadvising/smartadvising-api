@@ -49,7 +49,7 @@ class Student(Model):
     is_undergraduate = Column(BOOLEAN, nullable=False, default=True)
     # many students to one major
     major_id = Column(INTEGER, ForeignKey("Major.id"))
-    major = orm.relation("Major", uselist=False, back_populates="Student")
+    major = orm.relation("Major", uselist=False, back_populates="students")
 
 
 class Major(Model):
@@ -59,7 +59,7 @@ class Major(Model):
     name = Column(VARCHAR(255))
 
     # many majors to one college
-    college_id = Column(INTEGER, ForeignKey("College.id"))
+    college_id = Column(INTEGER, ForeignKey("College.id"), nullable=False)
     college = orm.relation("College", uselist=False)
 
     # one to many students
