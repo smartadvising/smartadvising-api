@@ -76,24 +76,16 @@ from sa.resources import (
     FaqResource,
 )
 
-
-class_to_route_names_table = {}
-
-for cls in (
-    StudentResource,
-    AdvisorResource,
-    CollegeResource,
-    MajorResource,
-    QueueResource,
-    QueuerResource,
-    FaqResource,
-):
-    name = cls.__name__.rsplit("Resource", 1)[0].lower()
-
-    try:
-        plural_name = class_to_route_names_table[name]
-    except KeyError:
-        plural_name = "".join((name, "s"))
-
-    api.add_route(f"/{plural_name}", cls())
-    api.add_route(f"/{plural_name}/{{{name}_id}}", cls())
+api.add_route("/advisors", AdvisorResource())
+api.add_route("/advisors/{advisor_id}", AdvisorResource())
+api.add_route("/colleges", CollegeResource())
+api.add_route("/colleges/{college_id}", CollegeResource())
+api.add_route("/colleges/{college_id}/majors", MajorResource())
+api.add_route("/colleges/{college_id}/majors/{major_id}", MajorResource())
+api.add_route("/faqs", cls())
+api.add_route("/faqs/{faq_id}", cls())
+api.add_route("/queuers", cls())
+api.add_route("/queuers/{queuer_id}", cls())
+api.add_route("/queues", cls())
+api.add_route("/students", StudentResource())
+api.add_route("/students/{student_id}", StudentResource())
