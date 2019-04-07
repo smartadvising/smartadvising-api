@@ -49,7 +49,7 @@ for div in [el for el in tree.xpath(xp_advisor_list) if "underline2" not in el.c
                 if advises_for[0].strip().lower() != "academic":
                     continue
                 should_add_advisor = True  # only add academic advisors
-                advisor["advises_for"] = advises_for[1:]
+                advisor["advises_for"] = advises_for[-1].split()
             elif i == 2:
                 advisor["info"] = col.text_content()
 
