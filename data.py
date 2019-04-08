@@ -39,7 +39,7 @@ for major, advisors in advisors_json.items():
                 name=advisor["name"],
                 email=advisor["email"],
                 is_undergraduate=student_level.lower() == "Undergraduate",
-                major_id=m.id
+                major_id=m.id,
             )
             db.Advisor.save(a)
 
