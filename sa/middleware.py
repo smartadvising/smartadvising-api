@@ -91,7 +91,12 @@ class AppTokenComponent(object):
         ]:  # HTTP/1.1
             req.data = req.params
         else:
-            req.data = json.load(req.bounded_stream)
+            try:
+                req.data = json.load(req.bounded_stream)
+            except json.decoder.JSONDecodeError:
+                raise falcon.HTTPBadRequest(
+                    description="The body of the request was malformed or empty, ensure arguments are not within the query parameter string and are valid JSON!"
+                )
 
         try:
             if req.data["app_token"] != SA_APP_TOKEN:
