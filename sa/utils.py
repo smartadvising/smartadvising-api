@@ -47,6 +47,5 @@ def slack_notification(text, slack_webhook_url=SLACK_WEBHOOK_URL):
         data=json.dumps({"text": text}),
         headers={
             "Content-Type": "application/json",
-            "Authorization": "Bearer {}".format(SLACK_TOKEN),
         },
     )
