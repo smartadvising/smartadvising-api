@@ -21,10 +21,10 @@ an interface layer to SQLAlchemy's session manager and ORM layer which provides 
 ##### PyMySQL
 a pure MySQL client in Python with connection pooling, which is optimal in AWS Lambda because of ["lifecycle" and in-memory caching](https://medium.com/@tjholowaychuk/aws-lambda-lifecycle-and-in-memory-caching-c9cd0844e072) of data
 
-#### Hosting
+### Hosting
 The core services, primarily the API, are provided by [AWS Lambda](https://aws.amazon.com/lambda/), a ["serverless"](https://aws.amazon.com/serverless/) architectural pattern which "allows you to build and run applications and services without thinking about servers", removing manual infrastructure management tasks such as server or cluster provisioning (or when scaling: capacity provisioning), patching, or OS maintenance".
 
-#### API Endpoints:
+### API Endpoints:
 
 The API endpoints are provided as a service by [AWS API Gateway](https://aws.amazon.com/api-gateway/), acting a reverse proxy for incoming API requests, making possible building an API with the setup of a single API method. "The Lambda proxy integration allows the client to call a single Lambda function in the backend. The function accesses many resources or features of other AWS services, including calling other Lambda functions."
 
