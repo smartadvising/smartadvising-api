@@ -135,10 +135,10 @@ class QueuerResource:
             self.db.Student.save(student)
 
         tail_queuer = (
-            self.db.query(Queue)
-            .filter(Queue.major_id == student.major_id)
-            .filter(Queue.is_undergraduate == student.is_undergraduate)
-            .order_by(Queue.position.desc())
+            self.db.query(Queuer)
+            .filter(Queuer.major_id == student.major_id)
+            .filter(Queuer.is_undergraduate == student.is_undergraduate)
+            .order_by(Queuer.position.desc())
             .first()
         )
 
@@ -165,9 +165,9 @@ class QueuerResource:
         )
 
         remaining_queuers = (
-            self.db.query(Queue)
-            .filter(Queuer.major_id == student.major_id)
-            .filter(Queuer.is_undergraduate == student.is_undergraduate)
+            self.db.query(Queuer)
+            .filter(Queuer.major_id == queuer.major_id)
+            .filter(Queuer.is_undergraduate == queuer.is_undergraduate)
             .filter(Queuer.position > queuer.position)
             .all()
         )
