@@ -8,8 +8,8 @@ import json
 import decimal
 import datetime
 
-from sqlalchemy import Column, ForeignKey, Table, Enum, orm
-from sqlalchemy.dialects.mysql import INTEGER, VARCHAR, DATETIME, BOOLEAN, TEXT
+from sqlalchemy import Column, ForeignKey, orm
+from sqlalchemy.dialects.mysql import INTEGER, VARCHAR, BOOLEAN, TEXT
 import sqlservice
 
 

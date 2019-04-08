@@ -8,7 +8,6 @@ import json
 import requests
 
 import falcon
-import boto3
 
 from sa.constants import SLACK_WEBHOOK_URL
 
