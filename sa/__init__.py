@@ -50,6 +50,8 @@ def generic_error_handler(ex, req, resp, params):
     if not isinstance(ex, falcon.HTTPError):
         ex = falcon.HTTPInternalServerError(description=str(ex))
         resp.status = falcon.HTTP_500
+    else:
+        resp.status = falcon.HTTP_400
 
     slack_notification(error_log_text)
 
