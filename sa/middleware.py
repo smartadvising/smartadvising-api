@@ -80,8 +80,6 @@ class Response(object):
 
 class AppTokenComponent(object):
     def process_request(self, req, resp):
-        from sa.utils import slack_notification
-
         """ Process the request before routing it. """
         if req.method in [
             "GET",
