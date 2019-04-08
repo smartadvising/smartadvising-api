@@ -10,6 +10,8 @@ import requests
 import falcon
 import boto3
 
+from sa.constants import SLACK_WEBHOOK_URL
+
 
 def parse_date(date_str: str) -> datetime.datetime:
     try:
@@ -37,3 +39,14 @@ def get_required_arg(data, key):
         return data[key]
     except KeyError:
         raise falcon.HTTPMissingParam(key)
+
+
+def slack_notification(text, slack_webhook_url=SLACK_WEBHOOK_URL):
+    return requests.post(
+        SLACK_WEBHOOK_URL,
+        data=json.dumps({"text": text}),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {}".format(SLACK_TOKEN),
+        },
+    )

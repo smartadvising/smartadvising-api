@@ -33,6 +33,8 @@ def handler(event, context):
 
 
 def generic_error_handler(ex, req, resp, params):
+    from sa.utils import slack_notification
+
     error_log_text = (
         f'*[ERROR {resp.status} {req.method} {req.path}]*: "{traceback.format_exc()}"'
     )
@@ -48,6 +50,8 @@ def generic_error_handler(ex, req, resp, params):
     if not isinstance(ex, falcon.HTTPError):
         ex = falcon.HTTPInternalServerError(description=str(ex))
         resp.status = falcon.HTTP_500
+
+    slack_notification(error_log_text)
 
     raise ex
 

@@ -101,11 +101,11 @@ class AppTokenComponent(object):
         except KeyError:
             raise falcon.HTTPMissingParam("app_token")
 
-        #try:
+        # try:
         #    req.timestamp = int(float(req.data["timestamp"]))
-        #except KeyError:
+        # except KeyError:
         #    raise falcon.HTTPMissingParam(param_name="timestamp")
-        #except TypeError:
+        # except TypeError:
         #    raise falcon.HTTPInvalidParam(
         #        msg="Request timestamp must be provided", param_name="timestamp"
         #    )
