@@ -155,7 +155,7 @@ class QueuerResource:
         resp.body = {"queuer": queuer.as_dict()}
         resp.status = falcon.HTTP_201
 
-    @falcon.before(required_arguments, ("student_id"))
+    @falcon.before(required_arguments, ("student_id",))
     def on_delete(self, req, resp, queuer_id: int = None):
         """ Dequeue a Student for a specific major/undergrad queue. """
         queuer = (
