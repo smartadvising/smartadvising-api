@@ -8,7 +8,7 @@ The API is written in Python 3.7 within the [Falcon](https://falconframework.org
 ![](http://pycnic.nullism.com/images/pycnic-bench.png)
 
 #### Database
-Our database is provided as a service by [AWS RDS], in which there's a t2.micro instance running MySQL 5.6 (which is within free tier usage restrictions).
+Our database is provided as a service by [AWS RDS](https://aws.amazon.com/rds/), in which there's a t2.micro instance running MySQL 5.6 (which is within free tier usage restrictions).
 
 
 ### Data Model
