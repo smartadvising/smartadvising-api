@@ -33,14 +33,24 @@ class StudentResource:
 
     @falcon.before(
         required_arguments,
-        ("email", "student_identifier", "is_undergraduate", "major_id"),
+        {
+            "email": str,
+            "student_identifier": str,
+            "is_undergraduate": bool,
+            "major_id": int,
+        },
     )
     def on_post(self, req, resp):
         student = Student()
 
         student.email = req.data["email"]
         student.student_identifier = req.data["student_identifier"]
-        student.is_undergraduate = req.data["is_undergraduate"]
+        is_undergraduate = req.data["is_undergraduate"]
+        student.is_undergraduate = (
+            strtobool(is_undergraduate)
+            if isinstance(is_undergraduate, str)
+            else bool(is_undergraduate)
+        )
         student.major_id = req.data["major_id"]
 
         self.db.Student.save(student)
@@ -123,7 +133,7 @@ class QueueResource:
 
 
 class QueuerResource:
-    @falcon.before(required_arguments, ("student_id"))
+    @falcon.before(required_arguments, {"student_id": int})
     def on_post(self, req, resp):
         """ Enqueue a Student for a specific major/undergrad queue. """
         student = (
@@ -155,7 +165,7 @@ class QueuerResource:
         resp.body = {"queuer": queuer.as_dict()}
         resp.status = falcon.HTTP_201
 
-    @falcon.before(required_arguments, ("student_id",))
+    @falcon.before(required_arguments, {"student_id": int})
     def on_delete(self, req, resp, queuer_id: int = None):
         """ Dequeue a Student for a specific major/undergrad queue. """
         queuer = (

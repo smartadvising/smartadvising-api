@@ -29,8 +29,19 @@ def required_arguments(req, resp, resource, params, required_args):
     """
     if not all(arg in req.data for arg in required_args):
         not_provided = [arg for arg in required_args if arg not in req.data]
-
         raise falcon.HTTPMissingParam(not_provided[0])
+
+    for arg in req.data:
+        if arg in required_args:
+            if not isinstance(arg, required_args[arg]):
+                try:
+                    required_args[arg](req.data[arg])
+                except (ValueError, TypeError) as e:
+                    slack_notification(f"{e}; {arg}, {required_args[arg]}")
+                    raise falcon.HTTPInvalidParam(
+                        f'`{arg}` ("{req.data[arg]}") type mismatch: provided type {type(arg)}, expected {required_args[arg]}',
+                        arg,
+                    )
 
 
 def get_required_arg(data, key):
