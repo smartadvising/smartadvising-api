@@ -42,9 +42,7 @@ def get_required_arg(data, key):
 
 def slack_notification(text, slack_webhook_url=SLACK_WEBHOOK_URL):
     return requests.post(
-        SLACK_WEBHOOK_URL,
+        slack_webhook_url,
         data=json.dumps({"text": text}),
-        headers={
-            "Content-Type": "application/json",
-        },
+        headers={"Content-Type": "application/json"},
     )
