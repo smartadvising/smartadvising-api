@@ -10,12 +10,13 @@ environment is up-to-date with `env_vars.json`.
 Using compiled bytecode, rather than source files, will lead to faster execution.
 
 """
-import boto3
+import configparser
 import json
 import os
-import time
 import sys
-import configparser
+import time
+
+import boto3
 
 
 AWS_PROFILE_NAME = "smartadvising"
