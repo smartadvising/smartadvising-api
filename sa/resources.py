@@ -27,6 +27,12 @@ class StudentResource:
             if "email" in req.data:
                 query = query.filter(Student.email == req.data["email"])
 
+            if "major_id" in req.data:
+                query = query.filter(Student.major_id == req.data["major_id"])
+
+            if "student_identifier" in req.data:
+                query = query.filter(Student.student_identifier == req.data["student_identifier"])
+
             students.extend(query.all())
 
         resp.body = {"students": [student.as_dict() for student in students]}
