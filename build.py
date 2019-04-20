@@ -25,6 +25,7 @@ FUNCTION_NAME = "smartadvising-api"
 
 PYTHON_PROJECT_DIR = "sa"
 PYTHON_PROJECT_PKG_DIR = "libs"
+PYTHON_PATH = sys.executable
 
 CONFIG_PARSER = configparser.ConfigParser()
 CONFIG_PARSER.read("./config.ini")
@@ -68,7 +69,7 @@ if sys.argv[1] == "build":
 
     for directory in [dir_code, dir_libs]:
         # Pre-compile all Python files into Python bytecode
-        os.system(f"python -OO -m compileall {directory}")
+        os.system(f"{PYTHON_PATH} -OO -m compileall {directory}")
 
         # Remove all .py files and move them from the __pycache__ directories to their top-level parent.
         os.system(
