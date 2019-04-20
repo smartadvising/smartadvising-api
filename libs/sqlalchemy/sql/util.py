@@ -20,6 +20,7 @@ from .annotation import _shallow_annotate  # noqa
 from .base import _from_objects
 from .base import ColumnSet
 from .ddl import sort_tables  # noqa
+from .elements import _expand_cloned
 from .elements import _find_columns  # noqa
 from .elements import _label_reference
 from .elements import _textual_label_reference
@@ -29,11 +30,13 @@ from .elements import ColumnElement
 from .elements import Null
 from .elements import UnaryExpression
 from .schema import Column
+from .selectable import Alias
 from .selectable import FromClause
 from .selectable import FromGrouping
 from .selectable import Join
 from .selectable import ScalarSelect
 from .selectable import SelectBase
+from .selectable import TableClause
 from .. import exc
 from .. import util
 
@@ -146,6 +149,14 @@ def find_left_clause_to_join_from(clauses, join_to, onclause):
             elif Join._can_join(f, s) or onclause is not None:
                 idx.append(i)
                 break
+
+    if len(idx) > 1:
+        # this is the same "hide froms" logic from
+        # Selectable._get_display_froms
+        toremove = set(
+            chain(*[_expand_cloned(f._hide_froms) for f in clauses])
+        )
+        idx = [i for i in idx if clauses[i] not in toremove]
 
     # onclause was given and none of them resolved, so assume
     # all indexes can match
@@ -337,6 +348,20 @@ def surface_selectables(clause):
             stack.extend((elem.left, elem.right))
         elif isinstance(elem, FromGrouping):
             stack.append(elem.element)
+
+
+def surface_selectables_only(clause):
+    stack = [clause]
+    while stack:
+        elem = stack.pop()
+        if isinstance(elem, (TableClause, Alias)):
+            yield elem
+        if isinstance(elem, Join):
+            stack.extend((elem.left, elem.right))
+        elif isinstance(elem, FromGrouping):
+            stack.append(elem.element)
+        elif isinstance(elem, ColumnClause):
+            stack.append(elem.table)
 
 
 def surface_column_elements(clause, include_scalar_selects=True):
