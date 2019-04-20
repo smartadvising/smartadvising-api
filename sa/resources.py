@@ -192,6 +192,7 @@ class QueuerResource:
             lg.position -= 1
             self.db.Queuer.save(lg)
 
+        self.db.Queuer.destroy(queuer)
         self.db.commit()
 
         resp.status = falcon.HTTP_202
