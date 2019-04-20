@@ -26,7 +26,7 @@ FUNCTION_NAME = "smartadvising-api"
 PYTHON_PROJECT_DIR = "sa"
 PYTHON_PROJECT_PKG_DIR = "libs"
 PYTHON_PATH = sys.executable
-PYTHON_VERSION = "cpython-36"
+PYTHON_VERSION = "cpython-37"
 
 CONFIG_PARSER = configparser.ConfigParser()
 CONFIG_PARSER.read("./config.ini")
