@@ -25,11 +25,12 @@ FUNCTION_NAME = "smartadvising-api"
 
 PYTHON_PROJECT_DIR = "sa"
 PYTHON_PROJECT_PKG_DIR = "libs"
+PYTHON_PATH = sys.executable
+PYTHON_VERSION = "cpython-37"
 
 CONFIG_PARSER = configparser.ConfigParser()
 CONFIG_PARSER.read("./config.ini")
 DEFAULTS = {"environment": json.load(open("env_vars.json"))}
-PYTHON_VERSION = "cpython-37"
 
 
 boto3.setup_default_session(profile_name=AWS_PROFILE_NAME)
@@ -68,15 +69,20 @@ if sys.argv[1] == "build":
 
     for directory in [dir_code, dir_libs]:
         # Pre-compile all Python files into Python bytecode
-        os.system(f"python -OO -m compileall {directory}")
+        os.system(f"{PYTHON_PATH} -OO -m compileall {directory}")
 
-        # Remove all .py files and move them from the __pycache__ directories to their top-level parent.
+        # /tmp/project-1555793085-libs/__pycache__/six.cpython-36.opt-2.pyc becomes /tmp/project-1555793085-libs/six.cpython-36.opt-2.pyc becomes /tmp/project-1555793085-libs/six.opt-2.pyc
+        # Transform all .pyc filenames as the above.
         os.system(
             f"find {directory} -type f -name '*.pyc' | while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.{PYTHON_VERSION}//'); cp $f $n; done;"
         )
+
+        # Remove all now-empty __pycache__ dirs
         os.system(
             f"find {directory} -type d -a -name '__pycache__' -print0 | xargs -0 rm -rf"
         )
+
+        # Remove all *.py files from prod zip
         os.system(f"find {directory} -type f -a -name '*.py' -print0 | xargs -0 rm -f")
 
     # Prepare to zip everything together
