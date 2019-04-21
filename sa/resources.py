@@ -66,6 +66,20 @@ class StudentResource:
         resp.status = falcon.HTTP_201
         resp.body = {"student_id": student.id}
 
+    def on_patch(self, req, resp, student_id: int):
+        student = self.db.query(Student).filter(Student.id == student_id).one()
+
+        if "major_id" in req.data:
+            student.major_id = req.data["major_id"]
+
+            try:
+                self.db.Student.save(student)
+                self.db.commit()
+            except sqlalchemy.exc.IntegrityError:
+                raise falcon.HTTPConflict(description="Duplicate e-mails")
+
+        resp.status = falcon.HTTP_202
+
     def on_delete(self, req, resp, student_id: int):
         student = self.db.query(Student).filter(Student.id == student_id).one()
 
