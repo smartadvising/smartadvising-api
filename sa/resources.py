@@ -11,6 +11,7 @@ __all__ = [
 from distutils.util import strtobool
 
 import falcon
+from sqlalchemy.orm.exc import NoResultFound
 
 from sa.models import Student, Advisor, College, Major, Faq, Queuer
 from sa.utils import required_arguments
@@ -64,6 +65,19 @@ class StudentResource:
 
         resp.status = falcon.HTTP_201
         resp.body = {"student_id": student.id}
+
+    def on_delete(self, req, resp, student_id: int):
+        student = self.db.query(Student).filter(Student.id == student_id).one()
+
+        try:
+            QueuerResource.dequeue(req.data["student_id"])
+        except NoResultFound as e:
+            print(f"Failed to dequeue Student with id {student_id}: {str(e)}")
+
+        self.db.Student.destroy(student)
+        self.db.commit()
+
+        resp.status = falcon.HTTP_202
 
 
 class AdvisorResource:
@@ -171,14 +185,14 @@ class QueuerResource:
         resp.body = {"queuer": queuer.as_dict()}
         resp.status = falcon.HTTP_201
 
-    @falcon.before(required_arguments, {"student_id": int})
-    def on_delete(self, req, resp, queuer_id: int = None):
+    def on_delete(self, req, resp, queuer_id: int):
+        QueuerResource.dequeue(req.data["student_id"])
+        resp.status = falcon.HTTP_202
+
+    @staticmethod
+    def dequeue(student_id: int):
         """ Dequeue a Student for a specific major/undergrad queue. """
-        queuer = (
-            self.db.query(Queuer)
-            .filter(Queuer.student_id == req.data["student_id"])
-            .one()
-        )
+        queuer = self.db.query(Queuer).filter(Queuer.student_id == student_id).one()
 
         remaining_queuers = (
             self.db.query(Queuer)
@@ -193,5 +207,3 @@ class QueuerResource:
             self.db.Queuer.save(lg)
 
         self.db.commit()
-
-        resp.status = falcon.HTTP_202
