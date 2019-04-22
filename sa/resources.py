@@ -11,7 +11,7 @@ __all__ = [
 from distutils.util import strtobool
 
 import falcon
-from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 
 from sa.models import Student, Advisor, College, Major, Faq, Queuer
 from sa.utils import required_arguments
