@@ -189,6 +189,14 @@ class QueuerResource:
             self.db.query(Student).filter(Student.id == req.data["student_id"]).one()
         )
 
+        if (
+            len(self.db.query(Queuer).filter(Queuer.student_id == req.data["student_id"]).all())
+            != 0
+        ):
+            raise falcon.HTTPBadRequest(
+                description=f"Student with id {req.data['student_id']} cannot be queued as they are already in a queue."
+            )
+
         if "name" in req.data:
             student.name = req.data["name"]
             self.db.Student.save(student)
@@ -226,9 +234,9 @@ class QueuerResource:
 
         """ Dequeue a Student for a specific major/undergrad queue. """
         if student_id:
-            queuer = db.query(Queuer).filter(Queuer.student_id == student_id).first()
+            queuer = db.query(Queuer).filter(Queuer.student_id == student_id).one()
         elif queuer_id:
-            queuer = db.query(Queuer).filter(Queuer.id == queuer_id).first()
+            queuer = db.query(Queuer).filter(Queuer.id == queuer_id).one()
 
         remaining_queuers = (
             db.query(Queuer)
