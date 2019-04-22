@@ -35,10 +35,6 @@ def handler(event, context):
 def generic_error_handler(ex, req, resp, params):
     from sa.utils import slack_notification
 
-    error_log_text = (
-        f'*[ERROR {resp.status} {req.method} {req.path}]*: "{traceback.format_exc()}"'
-    )
-
     # Ensure NoResultFound errors are treated as a bad request
     if isinstance(ex, sqlalchemy.orm.exc.NoResultFound):
         ex = falcon.HTTPBadRequest(
@@ -52,6 +48,10 @@ def generic_error_handler(ex, req, resp, params):
         resp.status = falcon.HTTP_500
     else:
         resp.status = falcon.HTTP_400
+
+    error_log_text = (
+            f'*[ERROR {resp.status} {req.method} {req.path}]*: Error description: "{ex.description}"\n\n{traceback.format_exc()}'
+    )
 
     slack_notification(error_log_text)
 
