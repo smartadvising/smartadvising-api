@@ -32,7 +32,9 @@ class StudentResource:
                 query = query.filter(Student.major_id == req.data["major_id"])
 
             if "student_identifier" in req.data:
-                query = query.filter(Student.student_identifier == req.data["student_identifier"])
+                query = query.filter(
+                    Student.student_identifier == req.data["student_identifier"]
+                )
 
             students.extend(query.all())
 
@@ -101,7 +103,9 @@ class StudentResource:
         except NoResultFound as e:
             pass
         except MultipleResultsFound as e:
-            for queuer in db.query(Queuer).filter(Queuer.student_id == student_id).all():
+            for queuer in (
+                db.query(Queuer).filter(Queuer.student_id == student_id).all()
+            ):
                 QueuerResource.dequeue(db, queuer_id=queuer.id)
 
 
@@ -216,9 +220,9 @@ class QueuerResource:
         resp.status = falcon.HTTP_202
 
     @staticmethod
-    def dequeue(db, student_id: int=None, queuer_id=None):
+    def dequeue(db, student_id: int = None, queuer_id=None):
         if not student_id and not queuer_id:
-            raise ValueError('must provide id to dequeue')
+            raise ValueError("must provide id to dequeue")
 
         """ Dequeue a Student for a specific major/undergrad queue. """
         if student_id:
