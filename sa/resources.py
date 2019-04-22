@@ -72,6 +72,8 @@ class StudentResource:
         if "major_id" in req.data:
             student.major_id = req.data["major_id"]
 
+            StudentResource.remove_student_from_all_queues(student)
+
             try:
                 self.db.Student.save(student)
                 self.db.commit()
@@ -83,15 +85,24 @@ class StudentResource:
     def on_delete(self, req, resp, student_id: int):
         student = self.db.query(Student).filter(Student.id == student_id).one()
 
-        try:
-            QueuerResource.dequeue(req.data["student_id"])
-        except NoResultFound as e:
-            print(f"Failed to dequeue Student with id {student_id}: {str(e)}")
+        StudentResource.remove_student_from_all_queues(student)
 
         self.db.Student.destroy(student)
         self.db.commit()
 
         resp.status = falcon.HTTP_202
+
+    @staticmethod
+    def remove_student_from_all_queues(db, student_id):
+        try:
+            queuer = db.query(Queuer).filter(Queuer.student_id == student_id).one()
+            # Attempt to dequeue student from any queues they are a queuer of
+            QueuerResource.dequeue(db, queuer_id=queuer.id)
+        except NoResultFound as e:
+            pass
+        except MultipleResultsFound as e:
+            for queuer in db.query(Queuer).filter(Queuer.student_id == student_id).all():
+                QueuerResource.dequeue(db, queuer_id=queuer.id)
 
 
 class AdvisorResource:
@@ -200,13 +211,17 @@ class QueuerResource:
         resp.status = falcon.HTTP_201
 
     def on_delete(self, req, resp, queuer_id: int):
-        QueuerResource.dequeue(req.data["student_id"])
+        QueuerResource.dequeue(self.db, queuer_id=queuer_id)
+
         resp.status = falcon.HTTP_202
 
     @staticmethod
-    def dequeue(student_id: int):
+    def dequeue(db, student_id: int=None, queuer_id=None):
+        if not student_id and not queuer_id:
+            raise ValueError('must provide id to dequeue')
+
         """ Dequeue a Student for a specific major/undergrad queue. """
-        queuer = self.db.query(Queuer).filter(Queuer.student_id == student_id).one()
+        queuer = db.query(Queuer).filter(Queuer.student_id == student_id).first()
 
         remaining_queuers = (
             self.db.query(Queuer)
@@ -218,7 +233,7 @@ class QueuerResource:
 
         for lg in remaining_queuers:
             lg.position -= 1
-            self.db.Queuer.save(lg)
+            db.Queuer.save(lg)
 
-        self.db.Queuer.destroy(queuer)
-        self.db.commit()
+        db.Queuer.destroy(queuer)
+        db.commit()
