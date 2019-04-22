@@ -71,21 +71,21 @@ class StudentResource:
 
         if "major_id" in req.data:
             student.major_id = req.data["major_id"]
+            StudentResource.remove_student_from_all_queues(self.db, student.id)
 
-            StudentResource.remove_student_from_all_queues(student)
+        if "is_undergraduate" in req.data:
+            student.is_undergraduate = strtobool(req.data["is_undergraduate"])
+            StudentResource.remove_student_from_all_queues(self.db, student.id)
 
-            try:
-                self.db.Student.save(student)
-                self.db.commit()
-            except sqlalchemy.exc.IntegrityError:
-                raise falcon.HTTPConflict(description="Duplicate e-mails")
+        self.db.Student.save(student)
+        self.db.commit()
 
         resp.status = falcon.HTTP_202
 
     def on_delete(self, req, resp, student_id: int):
         student = self.db.query(Student).filter(Student.id == student_id).one()
 
-        StudentResource.remove_student_from_all_queues(student)
+        StudentResource.remove_student_from_all_queues(student.id)
 
         self.db.Student.destroy(student)
         self.db.commit()
@@ -221,10 +221,13 @@ class QueuerResource:
             raise ValueError('must provide id to dequeue')
 
         """ Dequeue a Student for a specific major/undergrad queue. """
-        queuer = db.query(Queuer).filter(Queuer.student_id == student_id).first()
+        if student_id:
+            queuer = db.query(Queuer).filter(Queuer.student_id == student_id).first()
+        elif queuer_id:
+            queuer = db.query(Queuer).filter(Queuer.id == queuer_id).first()
 
         remaining_queuers = (
-            self.db.query(Queuer)
+            db.query(Queuer)
             .filter(Queuer.major_id == queuer.major_id)
             .filter(Queuer.is_undergraduate == queuer.is_undergraduate)
             .filter(Queuer.position > queuer.position)
