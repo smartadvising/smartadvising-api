@@ -160,6 +160,37 @@ class FaqResource:
 
         resp.body = {"faqs": [faq.as_dict() for faq in faqs]}
 
+    def on_post(self, req, resp):
+        faq = Faq()
+
+        faq.question = req.data["question"]
+        faq.answer = req.data["answer"]
+
+        self.db.Faq.save(faq)
+        self.db.commit()
+
+        resp.status = falcon.HTTP_201
+        resp.body = {"faq_id": faq.id}
+
+    def on_patch(self, req, resp, faq_id: int):
+        faq = self.db.query(Faq).filter(Faq.id == faq_id).one()
+
+        faq.question = req.data["question"]
+        faq.answer = req.data["answer"]
+
+        self.db.Faq.save(faq)
+        self.db.commit()
+
+        resp.status = falcon.HTTP_201
+
+    def on_delete(self, req, resp, faq_id: int):
+        faq = self.db.query(Faq).filter(Faq.id == faq_id).one()
+
+        self.db.Faq.destroy(faq)
+        self.db.commit()
+
+        resp.status = falcon.HTTP_202
+
 
 class QueueResource:
     def on_get(self, req, resp):
@@ -190,7 +221,11 @@ class QueuerResource:
         )
 
         if (
-            len(self.db.query(Queuer).filter(Queuer.student_id == req.data["student_id"]).all())
+            len(
+                self.db.query(Queuer)
+                .filter(Queuer.student_id == req.data["student_id"])
+                .all()
+            )
             != 0
         ):
             raise falcon.HTTPBadRequest(
