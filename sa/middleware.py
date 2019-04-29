@@ -109,15 +109,6 @@ class AppTokenComponent(object):
         except KeyError:
             raise falcon.HTTPMissingParam("app_token")
 
-        # try:
-        #    req.timestamp = int(float(req.data["timestamp"]))
-        # except KeyError:
-        #    raise falcon.HTTPMissingParam(param_name="timestamp")
-        # except TypeError:
-        #    raise falcon.HTTPInvalidParam(
-        #        msg="Request timestamp must be provided", param_name="timestamp"
-        #    )
-
 
 class JSONSerializeResponseComponent(object):
     def process_response(self, req, resp, resource, req_succeeded):
