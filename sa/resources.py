@@ -1,3 +1,9 @@
+"""
+Definitions of all API resources and their associated allowed methods
+
+:author: Sean Pianka
+
+"""
 __all__ = [
     "StudentResource",
     "AdvisorResource",

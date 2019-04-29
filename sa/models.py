@@ -1,6 +1,8 @@
 """
 These models are used by SQLService to interact with a MySQL RDS database
 
+:author: Sean Pianka
+
 """
 __all__ = ["Model", "Student", "Advisor", "College", "Major", "Faq", "Queuer"]
 

@@ -1,5 +1,8 @@
 """
     Definitions for API middleware
+
+:author: Sean Pianka
+
 """
 import json
 import sys

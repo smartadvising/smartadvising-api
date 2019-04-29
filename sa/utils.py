@@ -1,6 +1,7 @@
 """
-
 All functions which serve as a necessary component to a service
+
+:author: Sean Pianka
 
 """
 import datetime

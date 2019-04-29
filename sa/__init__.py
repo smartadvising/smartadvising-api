@@ -8,8 +8,6 @@ Below is an implementation of the Backend API
 - Designed for Serverless
 
 :author: Sean Pianka
-:email: sean@lunabit.io
-:org: Lunabit
 
 """
 import traceback
